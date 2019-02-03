@@ -5,6 +5,7 @@ import 'package:devicelocale/devicelocale.dart';
 
 void main() => runApp(MyApp());
 
+/// Demo getting a device locale
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
