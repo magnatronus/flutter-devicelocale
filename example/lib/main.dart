@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List _languages = List();
+  String _locale;
 
   @override
   void initState() {
@@ -23,12 +24,20 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     List languages;
+    String currentLocale;
 
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       languages = await Devicelocale.preferredLanguages;
+      print(languages);
     } on PlatformException {
-      print("Error obtaining preferred language");
+      print("Error obtaining preferred languages");
+    }
+    try {
+      currentLocale = await Devicelocale.currentLocale;
+      print(currentLocale);
+    } on PlatformException {
+      print("Error obtaining current locale");
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -38,6 +47,7 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _languages = languages;
+      _locale = currentLocale;
     });
   }
 
@@ -49,7 +59,15 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('$_languages\n'),
+          child: Column(
+            children: <Widget>[
+              Text("Current locale: "),
+              Text('$_locale'),
+              Text("Preferred Languages: "),
+              Text(_languages.toString()),
+
+            ],
+          )
         ),
       ),
     );

@@ -10,8 +10,14 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+
   if ([@"preferredLanguages" isEqualToString:call.method]) {
     result([NSLocale preferredLanguages]);
+  } else if([@"currentLocale" isEqualToString:call.method]){
+    NSString *locale = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+    NSString *language = [[NSLocale currentLocale] objectForKey: NSLocaleLanguageCode];
+    NSString *formattedStr = [NSString stringWithFormat:@"%@-%@",language, locale];
+    result(formattedStr);
   } else {
     result(FlutterMethodNotImplemented);
   }

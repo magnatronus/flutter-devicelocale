@@ -22,8 +22,14 @@ public class DevicelocalePlugin implements MethodCallHandler {
     String method = call.method;
     switch(method){
       case "preferredLanguages": result.success(getPreferredLanguages()); break;
+      case "currentLocale": result.success(getCurrentLocale()); break;
       default: result.notImplemented();
     }
+  }
+
+  private String getCurrentLocale() {
+    String locale = Locale.getDefault().toString();
+    return locale; 
   }
 
   private List<String> getPreferredLanguages() {
