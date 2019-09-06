@@ -33,10 +33,15 @@ public class DevicelocalePlugin implements MethodCallHandler {
   }
 
   private List<String> getPreferredLanguages() {
-    LocaleList list = Resources.getSystem().getConfiguration().getLocales().getAdjustedDefault();
     List<String> result = new ArrayList<String>();
-    for(int i=0; i<list.size(); i++){
-      result.add(list.get(i).toString());
+    try {
+      LocaleList list = Resources.getSystem().getConfiguration().getLocales().getAdjustedDefault();
+      for(int i=0; i<list.size(); i++){
+        result.add(list.get(i).toString());
+      }
+    }
+    catch (Throwable t) {
+      result.add(getCurrentLocale());
     }
     return result;
   }

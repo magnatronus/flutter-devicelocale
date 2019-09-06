@@ -21,6 +21,11 @@ this should return a list of the preferred/current language locales setup on the
 When first created this was a Swift based plugin, but due to [these issues](https://github.com/flutter/flutter/issues/16049) the Swift code has been removed and it now uses a simple Objective C call.
 
 
+## Updates
+
+- Sep 2019 0.2.0 Updated Android following feedback from https://github.com/huzhirento . Fallback to the currentLocale when attempting to get a list of locales fro Android 7 and below as the getLocales() call is a feature of API 24 and failed for Android 7 and below.
+
+
 ## Getting Started
 
 For help getting started with Flutter, view our 
