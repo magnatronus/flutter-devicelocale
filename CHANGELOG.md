@@ -1,3 +1,7 @@
+## 0.2.1 - 14 Dec 2019
+
+* enables the plugin to be used in flutter v1.12.13
+
 ## 0.2.0 - 06 Sep 2019
 
 * Updated Android getPreferredLanguages to fallback to the currentLocale if an error occurs when getting getLocales() (below API 24)
