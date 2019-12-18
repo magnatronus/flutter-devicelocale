@@ -3,13 +3,13 @@
 Gets the device locale data, independent of the app locale settings.
 
 # Usage
-```
+```dart
 import 'package:devicelocale/devicelocale.dart';
 ```
 
 then
 
-```
+```dart
 List languages = await Devicelocale.preferredLanguages;
 String locale = await Devicelocale.currentLocale;
 ```
