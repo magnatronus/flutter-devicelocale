@@ -65,11 +65,29 @@ class _MyAppState extends State<MyApp> {
               Text('$_locale'),
               Text("Preferred Languages: "),
               Text(_languages.toString()),
-
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: RaisedButton(
+                  onPressed: () {
+                    listLanguages();
+                  },
+                  child: Text("Run Test")
+                ),
+              ),
             ],
           )
         ),
       ),
     );
   }
+
+  /// testing for issue-12
+  void listLanguages() async {
+     List languages = await Devicelocale.preferredLanguages;
+    String locale = await Devicelocale.currentLocale;
+    print('current locale: $locale, preferred device languages:');
+    languages.forEach((l) => print(l));
+  }
+
+
 }

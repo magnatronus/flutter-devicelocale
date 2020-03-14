@@ -16,8 +16,13 @@
   } else if([@"currentLocale" isEqualToString:call.method]){
     NSString *locale = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
     NSString *language = [[NSLocale currentLocale] objectForKey: NSLocaleLanguageCode];
+    if(locale == nil) {
+      NSString *formattedStr = [NSString stringWithFormat:@"%@",language];
+      result(formattedStr);
+    } else {
     NSString *formattedStr = [NSString stringWithFormat:@"%@-%@",language, locale];
     result(formattedStr);
+    };
   } else {
     result(FlutterMethodNotImplemented);
   }
