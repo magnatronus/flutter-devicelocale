@@ -1,3 +1,6 @@
+## 0.2.2 - 14 March 2020
+* update iOS so that locale does not show if it is null
+
 ## 0.2.1 - 14 Dec 2019
 
 * enables the plugin to be used in flutter v1.12.13
