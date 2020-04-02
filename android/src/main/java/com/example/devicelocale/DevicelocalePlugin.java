@@ -1,48 +1,61 @@
 package com.example.devicelocale;
 
+import androidx.annotation.NonNull;
+import androidx.core.os.LocaleListCompat;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
-import android.content.res.Resources;
-import android.os.LocaleList;
-import 	java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-/** DevicelocalePlugin */
+/**
+ * DevicelocalePlugin
+ */
 public class DevicelocalePlugin implements MethodCallHandler {
-  /** Plugin registration. */
+
+  /**
+   * Plugin registration.
+   */
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "uk.spiralarm.flutter/devicelocale");
+    final MethodChannel channel = new MethodChannel(registrar.messenger(),
+        "uk.spiralarm.flutter/devicelocale");
     channel.setMethodCallHandler(new DevicelocalePlugin());
   }
 
   @Override
-  public void onMethodCall(MethodCall call, Result result) {
+  public void onMethodCall(MethodCall call, @NonNull Result result) {
     String method = call.method;
-    switch(method){
-      case "preferredLanguages": result.success(getPreferredLanguages()); break;
-      case "currentLocale": result.success(getCurrentLocale()); break;
-      default: result.notImplemented();
+    switch (method) {
+      case "preferredLanguages":
+        result.success(getPreferredLanguages());
+        break;
+      case "currentLocale":
+        result.success(getCurrentLocale());
+        break;
+      default:
+        result.notImplemented();
     }
   }
 
   private String getCurrentLocale() {
-    String locale = Locale.getDefault().toString();
-    return locale; 
+    return Locale.getDefault().toString();
   }
 
   private List<String> getPreferredLanguages() {
     List<String> result = new ArrayList<String>();
-    try {
-      LocaleList list = Resources.getSystem().getConfiguration().getLocales().getAdjustedDefault();
-      for(int i=0; i<list.size(); i++){
+
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+      LocaleListCompat list = LocaleListCompat.getAdjustedDefault();
+      for (int i = 0; i < list.size(); i++) {
         result.add(list.get(i).toString());
       }
-    }
-    catch (Throwable t) {
+    } else {
       result.add(getCurrentLocale());
     }
+
     return result;
   }
 }
