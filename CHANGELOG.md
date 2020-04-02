@@ -1,3 +1,6 @@
+## 0.2.3 - 2 Apr 2020
+* updates to Android code
+
 ## 0.2.2 - 14 March 2020
 * update iOS so that locale does not show if it is null
 

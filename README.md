@@ -23,6 +23,8 @@ When first created this was a Swift based plugin, but due to [these issues](http
 
 ## Updates
 
+- Apr 2020 0.2.3 Updated Android code from contributions from @ened
+
 - Mar 2020 0.2.2 Updated iOS so that if detected locale is null then it is not included in return value
 
 - Sep 2019 0.2.0 Updated Android following feedback from https://github.com/huzhirento . Fallback to the currentLocale when attempting to get a list of locales fro Android 7 and below as the getLocales() call is a feature of API 24 and failed for Android 7 and below.
