@@ -1,3 +1,6 @@
+## 0.3.0 - 5 Jul 2020
+* Added support for Android Embedding V2
+
 ## 0.2.3 - 2 Apr 2020
 * updates to Android code
 
