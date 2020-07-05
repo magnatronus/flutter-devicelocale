@@ -23,6 +23,23 @@ When first created this was a Swift based plugin, but due to [these issues](http
 
 ## Updates
 
+### Jul 2020 Locale update v0.3.1
+This is an update from a received request, where prior to 0.3.1  the 2 methods:
+- **preferredLanguages**
+- **currentLocale**
+
+returned string values.
+
+There are now 2 equivilent methods
+- **preferredLanguagesAsLocales**
+- **currentAsLocale**
+
+that now also return a **Locale** object rather than a string.
+
+
+
+### releases
+
 - July 2020 0.3.0 Updated Android to support Android Embedding V2
 
 - Apr 2020 0.2.3 Updated Android code from contributions from @ened

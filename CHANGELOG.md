@@ -1,3 +1,6 @@
+## 0.3.1 - 5 Jul 2020
+* new methods added to return Locales as well as the original String versions
+
 ## 0.3.0 - 5 Jul 2020
 * Added support for Android Embedding V2
 

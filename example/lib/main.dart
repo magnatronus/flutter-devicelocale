@@ -74,6 +74,18 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Run Test")
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: RaisedButton(
+                  onPressed: () async {
+                    await testAsLocale();
+                    await testLanguagesAsLocales();
+                  },
+                  child: Text("Test currentAsLocale"),
+                ),
+              ),
+
+
             ],
           )
         ),
@@ -81,8 +93,23 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  /// Show the use of the currentAsLocale Function
+  Future <void> testAsLocale() async {
+    Locale l = await Devicelocale.currentAsLocale;
+    print("Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");
+  }
+
+
+  /// Show the use of the preferredLanguagesAsLocale Function
+  Future <void> testLanguagesAsLocales() async {
+    List <Locale> languageLocales = await Devicelocale.preferredLanguagesAsLocales;
+    languageLocales.forEach((l) { 
+      print("Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");     
+    });
+  }
+
   /// testing for issue-12
-  void listLanguages() async {
+  Future <void> listLanguages() async {
      List languages = await Devicelocale.preferredLanguages;
     String locale = await Devicelocale.currentLocale;
     print('current locale: $locale, preferred device languages:');
