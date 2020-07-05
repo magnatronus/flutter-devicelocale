@@ -7,6 +7,10 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
+import android.content.Context;
+import android.content.ContextWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -14,16 +18,37 @@ import java.util.Locale;
 /**
  * DevicelocalePlugin
  */
-public class DevicelocalePlugin implements MethodCallHandler {
+public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
+
+  private Context applicationContext;
+  private MethodChannel methodChannel;
 
   /**
    * Plugin registration.
    */
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(),
-        "uk.spiralarm.flutter/devicelocale");
-    channel.setMethodCallHandler(new DevicelocalePlugin());
+    final DevicelocalePlugin instance = new DevicelocalePlugin();
+    instance.onAttachedToEngine(registrar.context(), registrar.messenger());
   }
+
+  @Override
+  public void onAttachedToEngine(FlutterPluginBinding binding) {
+    onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
+  }
+
+  @Override
+  public void onDetachedFromEngine(FlutterPluginBinding binding) {
+    applicationContext = null;
+    methodChannel.setMethodCallHandler(null);
+    methodChannel = null;
+  }  
+
+  private void onAttachedToEngine(Context applicationContext, BinaryMessenger messenger) {
+    this.applicationContext = applicationContext;
+    methodChannel = new MethodChannel(messenger, "uk.spiralarm.flutter/devicelocale");
+    methodChannel.setMethodCallHandler(this);
+  }
+
 
   @Override
   public void onMethodCall(MethodCall call, @NonNull Result result) {

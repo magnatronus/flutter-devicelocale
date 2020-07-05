@@ -23,6 +23,8 @@ When first created this was a Swift based plugin, but due to [these issues](http
 
 ## Updates
 
+- July 2020 0.3.0 Updated Android to support Android Embedding V2
+
 - Apr 2020 0.2.3 Updated Android code from contributions from @ened
 
 - Mar 2020 0.2.2 Updated iOS so that if detected locale is null then it is not included in return value
