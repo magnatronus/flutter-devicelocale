@@ -1,3 +1,6 @@
+## 0.3.2 - 5 Sep 2020
+* merged update from nstrelow (androidx updates)
+
 ## 0.3.1 - 5 Jul 2020
 * new methods added to return Locales as well as the original String versions
 
