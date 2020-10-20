@@ -15,7 +15,7 @@ class Devicelocale {
     final String token = (Platform.isIOS) ? "-" : "_";
     try {
       List localeList = info.split(token);
-      if (localeList.length == 2) {
+      if (localeList.length >= 2) {
         return Locale(localeList[0], localeList[1]);
       }
       return Locale(localeList[0]);
