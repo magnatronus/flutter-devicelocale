@@ -1,3 +1,6 @@
+## 0.3.3 - 20 Oct 2020
+* merge update from mono0926 (ios)
+
 ## 0.3.2 - 5 Sep 2020
 * merged update from nstrelow (androidx updates)
 
