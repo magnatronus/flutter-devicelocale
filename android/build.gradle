@@ -1,5 +1,5 @@
 group 'com.example.devicelocale'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 buildscript {
     repositories {
@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.0'
     }
 }
 
@@ -26,9 +26,9 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     lintOptions {
         disable 'InvalidPackage'
-    }
+    }    
 }

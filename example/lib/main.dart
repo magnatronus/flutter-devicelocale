@@ -12,8 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List _languages = List();
-  String _locale;
+  List? _languages = [];
+  String? _locale;
 
   @override
   void initState() {
@@ -23,19 +23,19 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    List languages;
-    String currentLocale;
+    List? languages = [];
+    String? currentLocale;
 
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       languages = await Devicelocale.preferredLanguages;
-      print(languages);
+      print( (languages != null) ? languages : "unable to get preferred languages");
     } on PlatformException {
       print("Error obtaining preferred languages");
     }
     try {
       currentLocale = await Devicelocale.currentLocale;
-      print(currentLocale);
+      print( (currentLocale != null) ? currentLocale : "Unable to get currentLocale");
     } on PlatformException {
       print("Error obtaining current locale");
     }
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
               Text(_languages.toString()),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     listLanguages();
                   },
@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () async {
                     await testAsLocale();
                     await testLanguagesAsLocales();
@@ -95,25 +95,37 @@ class _MyAppState extends State<MyApp> {
 
   /// Show the use of the currentAsLocale Function
   Future <void> testAsLocale() async {
-    Locale l = await Devicelocale.currentAsLocale;
-    print("Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");
+    Locale? l = await Devicelocale.currentAsLocale;
+    if(l != null){
+      print("CurrentAsLocale result: Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");
+    } else {
+      print('Unable to determine currentAsLocale');
+    }
   }
 
 
   /// Show the use of the preferredLanguagesAsLocale Function
   Future <void> testLanguagesAsLocales() async {
-    List <Locale> languageLocales = await Devicelocale.preferredLanguagesAsLocales;
+    List <Locale>  languageLocales = await Devicelocale.preferredLanguagesAsLocales;
+    print(languageLocales);
+    print("Preferred languagesAsLocales:");
     languageLocales.forEach((l) { 
-      print("Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");     
+      print("- Language Code: ${l.languageCode} , Country Code: ${l.countryCode}");     
     });
+
   }
 
   /// testing for issue-12
   Future <void> listLanguages() async {
-     List languages = await Devicelocale.preferredLanguages;
-    String locale = await Devicelocale.currentLocale;
-    print('current locale: $locale, preferred device languages:');
-    languages.forEach((l) => print(l));
+    List? languages = await Devicelocale.preferredLanguages;
+    String? locale = await Devicelocale.currentLocale;
+    if(locale != null){
+      print('current locale: $locale');
+    }
+    if(languages != null){
+      print('preferred device languages:');
+      languages.forEach((l) => print(' - $l'));
+    }
   }
 
 }

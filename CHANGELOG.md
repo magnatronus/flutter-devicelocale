@@ -1,19 +1,29 @@
+## 0.4.0 - 5 Mar 2021
+
+* null safety update
+
 ## 0.3.3 - 20 Oct 2020
+
 * merge update from mono0926 (ios)
 
 ## 0.3.2 - 5 Sep 2020
+
 * merged update from nstrelow (androidx updates)
 
 ## 0.3.1 - 5 Jul 2020
+
 * new methods added to return Locales as well as the original String versions
 
 ## 0.3.0 - 5 Jul 2020
+
 * Added support for Android Embedding V2
 
 ## 0.2.3 - 2 Apr 2020
+
 * updates to Android code
 
 ## 0.2.2 - 14 March 2020
+
 * update iOS so that locale does not show if it is null
 
 ## 0.2.1 - 14 Dec 2019

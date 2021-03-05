@@ -6,3 +6,5 @@
 pubspec.lock
 
 build/
+example/web
+example/macos
