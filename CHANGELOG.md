@@ -1,3 +1,7 @@
+## 0.4.1 - 17 Mar 2021
+
+* test support added for web
+
 ## 0.4.0 - 5 Mar 2021
 
 * null safety update

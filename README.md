@@ -21,6 +21,8 @@ this should return a list of the preferred/current language locales setup on the
 
 ### March 2021
 
+Added test support for web
+
 Updated for null safety
 
 ### Jul 2020 Locale update v0.3.1

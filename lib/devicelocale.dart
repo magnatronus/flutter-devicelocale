@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 
 /// A Simple plug-in that can be used to query a device( iOS or Android) to obtain a list of current set up locales and languages
@@ -15,7 +16,12 @@ class Devicelocale {
     if (info == null) {
       return null;
     }
-    final String token = (Platform.isIOS) ? "-" : "_";
+
+    final String token = (kIsWeb)
+        ? "-"
+        : (Platform.isIOS)
+            ? "-"
+            : "_";
     try {
       List localeList = info.split(token);
       if (localeList.length < 2) {
@@ -67,6 +73,7 @@ class Devicelocale {
   /// Returns a [Locale] of the currently set DEVICE locale made up of the language and the region
   static Future<Locale?> get currentAsLocale async {
     final String? locale = await _channel.invokeMethod('currentLocale');
+    print("testing asLocale");
     return _getAsLocale(locale, null);
   }
 }

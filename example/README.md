@@ -1,6 +1,6 @@
 # devicelocale_example
 
-Demonstrates how to use the devicelocale plugin.
+Demonstrates how to use the devicelocale plugin for iOS, Android and Web
 
 ## Getting Started
 
