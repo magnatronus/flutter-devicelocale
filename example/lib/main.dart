@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/services.dart';
+
 import 'package:devicelocale/devicelocale.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +15,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List? _languages = [];
   String? _locale;
+  String? _country;
+  String? _language;
 
   @override
   void initState() {
@@ -25,6 +28,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     List? languages = [];
     String? currentLocale;
+    String? country;
+    String? language;
 
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -37,6 +42,8 @@ class _MyAppState extends State<MyApp> {
     }
     try {
       currentLocale = await Devicelocale.currentLocale;
+      country = await Devicelocale.currentCountry;
+      language = await Devicelocale.currentLanguage;
       print((currentLocale != null)
           ? currentLocale
           : "Unable to get currentLocale");
@@ -52,6 +59,8 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _languages = languages;
       _locale = currentLocale;
+      _country = country;
+      _language = language;
     });
   }
 
@@ -67,6 +76,10 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             Text("Current locale: "),
             Text('$_locale'),
+            Text("Current country: "),
+            Text('$_country'),
+            Text("Current language: "),
+            Text('$_language'),
             Text("Preferred Languages: "),
             Text(_languages.toString()),
             Padding(

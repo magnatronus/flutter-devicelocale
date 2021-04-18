@@ -1,8 +1,9 @@
 /// Copyright (c) 2019-2021, Steve Rogers. All rights reserved. Use of this source code
 /// is governed by an Apache License 2.0 that can be found in the LICENSE file.
 import 'dart:async';
-import 'dart:ui';
 import 'dart:io' show Platform;
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 
@@ -75,5 +76,32 @@ class Devicelocale {
     final String? locale = await _channel.invokeMethod('currentLocale');
     print("testing asLocale");
     return _getAsLocale(locale, null);
+  }
+
+  /// Returns the current country as ISO 3166-1
+  static Future<String?> get currentCountry async {
+    List<String>? data = await _partialData;
+
+    return data?.elementAt(1);
+  }
+
+  /// Returns the current language as ISO 639-1
+  static Future<String?> get currentLanguage async {
+    List<String>? data = await _partialData;
+
+    return data?.elementAt(0);
+  }
+
+  /// Returns the split locale data (language + country code)
+  static Future<List<String>?> get _partialData async {
+    final String? locale = await currentLocale;
+
+    if (locale == null) {
+      return null;
+    }
+
+    String token = kIsWeb || Platform.isIOS ? '-' : '_';
+
+    return locale.split(token);
   }
 }
