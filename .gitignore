@@ -8,3 +8,9 @@ pubspec.lock
 build/
 example/web
 example/macos
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
