@@ -17,6 +17,10 @@ String locale = await Devicelocale.currentLocale;
 
 this should return a list of the preferred/current language locales setup on the device, with the current one being the first in the list or just the currently set device locale.
 
+### Note for Linux
+
+Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferred languages, `Devicelocale.preferredLanguages` always returns the current locale.
+
 ## Updates
 
 ### March 2021
