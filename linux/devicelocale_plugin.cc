@@ -3,9 +3,7 @@
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
 
-#include <cerrno>
 #include <clocale>
-#include <cstddef>
 #include <cstring>
 
 #define DEVICELOCALE_PLUGIN(obj)                                       \
