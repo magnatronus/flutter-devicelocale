@@ -1,3 +1,7 @@
+## 0.4.2 - 11 Jul 2021
+
+* beta support for Linux
+
 ## 0.4.1 - 17 Mar 2021
 
 * test support added for web

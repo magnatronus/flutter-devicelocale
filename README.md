@@ -23,6 +23,9 @@ Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferr
 
 ## Updates
 
+### July 2021
+Add beta support for Linux
+
 ### March 2021
 
 Added test support for web
