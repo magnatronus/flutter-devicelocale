@@ -42,6 +42,8 @@ class Devicelocale {
 
   /// Returns a [List] of locales from the device
   /// the first in the list should be the current one set on the device
+  ///
+  /// On Linux, returns the current locale.
   static Future<List?> get preferredLanguages async {
     final List? version = await _channel.invokeMethod('preferredLanguages');
     return version;
@@ -49,6 +51,8 @@ class Devicelocale {
 
   /// Return a [List] of [Locales] based on the list of preferred languages
   /// This is the same list returned by [preferredlanguages]  but as a [Locales] rather than [Strings]
+  ///
+  /// On Linux, returns the current locale.
   static Future<List<Locale>> get preferredLanguagesAsLocales async {
     final String? defaultLocale = await _channel.invokeMethod('currentLocale');
     final List? version = await _channel.invokeMethod('preferredLanguages');
