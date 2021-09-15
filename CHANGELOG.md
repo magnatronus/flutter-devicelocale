@@ -1,3 +1,7 @@
+## 0.4.3 - 15 Sept 2021
+
+* removed debug print statement
+
 ## 0.4.2 - 11 Jul 2021
 
 * beta support for Linux
