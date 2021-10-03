@@ -1,14 +1,14 @@
 package com.example.devicelocale;
 
 import androidx.annotation.NonNull;
-import androidx.core.os.LocaleListCompat;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-import io.flutter.embedding.engine.plugins.FlutterPlugin;
-import io.flutter.plugin.common.BinaryMessenger;
+
+import androidx.core.os.LocaleListCompat;
 import android.content.Context;
 import android.content.ContextWrapper;
 import java.util.ArrayList;
@@ -20,35 +20,18 @@ import java.util.Locale;
  */
 public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
 
-  private Context applicationContext;
-  private MethodChannel methodChannel;
-
-  /**
-   * Plugin registration.
-   */
-  public static void registerWith(Registrar registrar) {
-    final DevicelocalePlugin instance = new DevicelocalePlugin();
-    instance.onAttachedToEngine(registrar.context(), registrar.messenger());
-  }
+  private MethodChannel channel;
 
   @Override
-  public void onAttachedToEngine(FlutterPluginBinding binding) {
-    onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "uk.spiralarm.flutter/devicelocale");
+    channel.setMethodCallHandler(this);
   }
 
   @Override
   public void onDetachedFromEngine(FlutterPluginBinding binding) {
-    applicationContext = null;
-    methodChannel.setMethodCallHandler(null);
-    methodChannel = null;
+    channel.setMethodCallHandler(null);
   }  
-
-  private void onAttachedToEngine(Context applicationContext, BinaryMessenger messenger) {
-    this.applicationContext = applicationContext;
-    methodChannel = new MethodChannel(messenger, "uk.spiralarm.flutter/devicelocale");
-    methodChannel.setMethodCallHandler(this);
-  }
-
 
   @Override
   public void onMethodCall(MethodCall call, @NonNull Result result) {

@@ -1,3 +1,7 @@
+## 0.5.0 - 03 Oct 2021
+
+* Update Android code to remove deprecation warning
+
 ## 0.4.3 - 15 Sept 2021
 
 * removed debug print statement
