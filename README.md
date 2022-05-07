@@ -23,6 +23,9 @@ Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferr
 
 ## Updates
 
+### May 2022
+Merged pull requests
+
 ### Oct 2021
 Updated the code and APIs used by Flutter for an Android plugin - this was the source of the Deprecated API warning in the Android build.
 

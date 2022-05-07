@@ -1,3 +1,7 @@
+## 0.5.1 - 07 May 2022
+
+* Merged PRs for Android and Linux updates
+
 ## 0.5.0 - 03 Oct 2021
 
 * Update Android code to remove deprecation warning

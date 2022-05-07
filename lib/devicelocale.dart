@@ -1,4 +1,4 @@
-/// Copyright (c) 2019-2021, Steve Rogers. All rights reserved. Use of this source code
+/// Copyright (c) 2019-2022, Steve Rogers. All rights reserved. Use of this source code
 /// is governed by an Apache License 2.0 that can be found in the LICENSE file.
 import 'dart:async';
 import 'dart:ui';
