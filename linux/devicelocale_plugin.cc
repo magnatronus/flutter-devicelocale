@@ -17,6 +17,16 @@ struct _DevicelocalePlugin {
 G_DEFINE_TYPE(DevicelocalePlugin, devicelocale_plugin, g_object_get_type())
 
 static const gchar *DEFAULT_LOCALE = "en_US";
+static const size_t CATEGORIES_SIZE = 7;
+static const int CATEGORIES[CATEGORIES_SIZE] = {
+    LC_ALL,
+    LC_COLLATE,
+    LC_CTYPE,
+    LC_MESSAGES,
+    LC_MONETARY,
+    LC_NUMERIC,
+    LC_TIME,
+};
 
 // Remove the encoding from the end of the locale string and returns new string
 static gchar *remove_encoding(gchar *locale)
@@ -33,9 +43,28 @@ static gchar *remove_encoding(gchar *locale)
     return g_strndup(locale, n_bytes);
 }
 
+static gchar *get_category_locale(int category)
+{
+    gchar *locale = setlocale(category, "");
+    bool no_locale = locale == nullptr
+        || strncmp(locale, "LC_", sizeof("LC_") - 1) == 0;
+    if (no_locale) {
+        g_free(locale);
+        return nullptr;
+    } else {
+        return locale;
+    }
+}
+
 static FlValue *get_current_locale()
 {
-    g_autofree gchar *current_locale = remove_encoding(setlocale(LC_ALL, ""));
+    g_autofree gchar *current_locale = nullptr;
+    for (int i = 0; i < CATEGORIES_SIZE; i++) {
+        current_locale = remove_encoding(get_category_locale(CATEGORIES[i]));
+        if (current_locale) {
+            break;
+        }
+    }
     bool use_default = current_locale == nullptr
         || strcmp(current_locale, "C") == 0
         || strcmp(current_locale, "POSIX") == 0;
