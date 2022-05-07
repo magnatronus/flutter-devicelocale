@@ -11,6 +11,8 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import androidx.core.os.LocaleListCompat;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.os.Build;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -49,7 +51,7 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
   }
 
   private String getCurrentLocale() {
-    return Locale.getDefault().toString();
+    return getLocaleTag(Locale.getDefault());
   }
 
   private List<String> getPreferredLanguages() {
@@ -58,12 +60,20 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
       LocaleListCompat list = LocaleListCompat.getAdjustedDefault();
       for (int i = 0; i < list.size(); i++) {
-        result.add(list.get(i).toString());
+        result.add(getLocaleTag(list.get(i)));
       }
     } else {
       result.add(getCurrentLocale());
     }
 
     return result;
+  }
+
+  private String getLocaleTag(Locale locale) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return locale.toLanguageTag();
+    } else {
+      return locale.toString();
+    }
   }
 }
