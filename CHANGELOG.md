@@ -1,3 +1,7 @@
+## 0.5.2 - 19 May 2022
+
+* Merge PR to detect token rather than hard code
+
 ## 0.5.1 - 07 May 2022
 
 * Merged PRs for Android and Linux updates
