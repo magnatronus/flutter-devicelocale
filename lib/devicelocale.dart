@@ -2,8 +2,6 @@
 /// is governed by an Apache License 2.0 that can be found in the LICENSE file.
 import 'dart:async';
 import 'dart:ui';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 
 /// A Simple plug-in that can be used to query a device( iOS or Android) to obtain a list of current set up locales and languages
@@ -16,16 +14,12 @@ class Devicelocale {
       return null;
     }
 
-    final String token = (kIsWeb)
-        ? "-"
-        : (Platform.isIOS)
-            ? "-"
-            : "_";
+    final String token = info.contains('-') ? '-' : '_';
     try {
       List localeList = info.split(token);
       if (localeList.length < 2) {
         if (defaultLocale != null) {
-          List defaultList = defaultLocale.split(token);
+          List defaultList = defaultLocale.contains('-') ? defaultLocale.split('-') : defaultLocale.split('_');
           if (defaultList.length >= 2) {
             return Locale(defaultList[0], defaultList[1]);
           } else {
