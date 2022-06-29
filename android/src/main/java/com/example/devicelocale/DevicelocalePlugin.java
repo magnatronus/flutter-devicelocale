@@ -1,7 +1,9 @@
 package com.example.devicelocale;
 
+import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.NonNull;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -33,7 +35,7 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
   @Override
   public void onDetachedFromEngine(FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
-  }  
+  }
 
   @Override
   public void onMethodCall(MethodCall call, @NonNull Result result) {
@@ -45,6 +47,12 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
       case "currentLocale":
         result.success(getCurrentLocale());
         break;
+      case "setLanguagePerApp":
+        result.success(setLanguagePerAppSetting(call));
+        break;
+      case "isLanguagePerAppSettingSupported":
+        result.success(isLanguagePerAppSettingSupported());
+        break;
       default:
         result.notImplemented();
     }
@@ -53,6 +61,7 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
   private String getCurrentLocale() {
     return getLocaleTag(Locale.getDefault());
   }
+
 
   private List<String> getPreferredLanguages() {
     List<String> result = new ArrayList<String>();
@@ -75,5 +84,18 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
     } else {
       return locale.toString();
     }
+  }
+
+  @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU)
+  private boolean setLanguagePerAppSetting(MethodCall methodCall) {
+  	final String locale = methodCall.argument("locale");
+    final LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(locale);
+    AppCompatDelegate.setApplicationLocales(appLocale);
+  	return true;
+  }
+
+  @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU)
+  private boolean isLanguagePerAppSettingSupported() {
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
   }
 }
