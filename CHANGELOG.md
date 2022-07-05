@@ -1,3 +1,7 @@
+## 0.5.3 - 5 Jul 2022
+
+* merge PR to add additional Android functionality - see readme
+
 ## 0.5.2 - 19 May 2022
 
 * Merge PR to detect token rather than hard code

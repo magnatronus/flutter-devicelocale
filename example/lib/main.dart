@@ -94,7 +94,9 @@ class _MyAppState extends State<MyApp> {
   Future<void> _getCurrentLocale() async {
     try {
       final currentLocale = await Devicelocale.currentLocale;
-      print((currentLocale != null) ? currentLocale : "Unable to get currentLocale");
+      print((currentLocale != null)
+          ? currentLocale
+          : "Unable to get currentLocale");
       setState(() => _currentLocale = currentLocale);
     } on PlatformException {
       print("Error obtaining current locale");
@@ -104,7 +106,9 @@ class _MyAppState extends State<MyApp> {
   Future<void> _getPreferedLanguages() async {
     try {
       final languages = await Devicelocale.preferredLanguages;
-      print((languages != null) ? languages : "unable to get preferred languages");
+      print((languages != null)
+          ? languages
+          : "unable to get preferred languages");
       setState(() => _languages = languages);
     } on PlatformException {
       print("Error obtaining preferred languages");

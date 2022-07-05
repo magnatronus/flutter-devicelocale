@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 
 /// A Simple plug-in that can be used to query a device( iOS or Android) to obtain a list of current set up locales and languages
 class Devicelocale {
-  static const MethodChannel _channel = const MethodChannel('uk.spiralarm.flutter/devicelocale');
+  static const MethodChannel _channel =
+      const MethodChannel('uk.spiralarm.flutter/devicelocale');
 
   /// return a [Locale] based on the passed in String [info] or the [defaultLocale] and the platform
   static Locale? _getAsLocale(String? info, String? defaultLocale) {
@@ -20,7 +21,9 @@ class Devicelocale {
       List localeList = info.split(token);
       if (localeList.length < 2) {
         if (defaultLocale != null) {
-          List defaultList = defaultLocale.contains('-') ? defaultLocale.split('-') : defaultLocale.split('_');
+          List defaultList = defaultLocale.contains('-')
+              ? defaultLocale.split('-')
+              : defaultLocale.split('_');
           if (defaultList.length >= 2) {
             return Locale(defaultList[0], defaultList[1]);
           } else {
@@ -77,7 +80,8 @@ class Devicelocale {
   /// Returns a [bool] so you know if language per app setting is available.
   static Future<bool> get isLanguagePerAppSettingSupported async {
     if (!Platform.isAndroid) return false;
-    final bool? isSupported = await _channel.invokeMethod('isLanguagePerAppSettingSupported');
+    final bool? isSupported =
+        await _channel.invokeMethod('isLanguagePerAppSettingSupported');
     return isSupported ?? false;
   }
 
