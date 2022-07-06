@@ -100,10 +100,12 @@ public class DevicelocalePlugin implements MethodCallHandler, FlutterPlugin {
   private boolean setLanguagePerAppSetting(MethodCall methodCall) {
   	final String locale = methodCall.argument("locale");
     final Handler mainHandler = new Handler(applicationContext.getMainLooper());
-    Runnable myRunnable = () -> {
-      final LocaleList appLocale = LocaleList.forLanguageTags(locale);
-      final LocaleManager service = applicationContext.getSystemService(LocaleManager.class);
-      service.setApplicationLocales(appLocale);
+    final Runnable myRunnable = new Runnable() {
+      public void run() {
+        final LocaleList appLocale = LocaleList.forLanguageTags(locale);
+        final LocaleManager service = applicationContext.getSystemService(LocaleManager.class);
+        service.setApplicationLocales(appLocale);
+      }
     };
     mainHandler.post(myRunnable);
   	return true;
