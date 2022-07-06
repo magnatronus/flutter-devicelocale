@@ -1,3 +1,7 @@
+## 0.5.4
+
+* 6 Jul 2022 - pr merge for lambda not supported issue
+
 ## 0.5.3 - 5 Jul 2022
 
 * merge PR to add additional Android functionality - see readme
