@@ -1,3 +1,7 @@
+## 0.5.5
+
+* 30 Aug 2022 - pr to merge macos support
+
 ## 0.5.4
 
 * 6 Jul 2022 - pr merge for lambda not supported issue
