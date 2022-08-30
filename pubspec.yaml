@@ -34,6 +34,8 @@ flutter:
         pluginClass: DevicelocalePlugin
       ios:
         pluginClass: DevicelocalePlugin
+      macos:
+        pluginClass: DevicelocalePlugin
       web:
         pluginClass: DevicelocaleWeb
         fileName: devicelocale_web.dart
