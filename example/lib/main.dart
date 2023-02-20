@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List? _languages = [];
   String? _currentLocale;
+  String? _defaultLocale;
   bool _isSupported = false;
 
   @override
@@ -32,7 +33,14 @@ class _MyAppState extends State<MyApp> {
           child: ListView(
             padding: EdgeInsets.all(16),
             children: [
-              Text("Current locale: "),
+              Text("Default locale: "),
+              Text('$_defaultLocale'),
+              ElevatedButton(
+                onPressed: _getDefaultLocale,
+                child: Text("Refresh"),
+              ),
+              SizedBox(height: 8),
+              Text("Reported Current locale: "),
               Text('$_currentLocale'),
               ElevatedButton(
                 onPressed: _getCurrentLocale,
@@ -47,7 +55,7 @@ class _MyAppState extends State<MyApp> {
               Text("Preferred Languages: "),
               Text(_languages.toString()),
               ElevatedButton(
-                onPressed: _getPreferedLanguages,
+                onPressed: _getPreferredLanguages,
                 child: Text("Refresh"),
               ),
               SizedBox(height: 8),
@@ -87,8 +95,21 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _initPlatformState() async {
     _getCurrentLocale();
-    _getPreferedLanguages();
+    _getDefaultLocale();
+    _getPreferredLanguages();
     _checkForSupport();
+  }
+
+  Future<void> _getDefaultLocale() async {
+    try {
+      final defaultLocale = await Devicelocale.defaultLocale;
+      print((defaultLocale != null)
+          ? defaultLocale
+          : "Unable to get defaultLocale");
+      setState(() => _defaultLocale = defaultLocale);
+    } on PlatformException {
+      print("Error obtaining default locale");
+    }
   }
 
   Future<void> _getCurrentLocale() async {
@@ -103,7 +124,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future<void> _getPreferedLanguages() async {
+  Future<void> _getPreferredLanguages() async {
     try {
       final languages = await Devicelocale.preferredLanguages;
       print((languages != null)

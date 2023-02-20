@@ -1,4 +1,4 @@
-/// Copyright (c) 2019-2022, Steve Rogers. All rights reserved. Use of this source code
+/// Copyright (c) 2019-2023, Steve Rogers. All rights reserved. Use of this source code
 /// is governed by an Apache License 2.0 that can be found in the LICENSE file.
 import 'dart:async';
 import 'dart:io';
@@ -62,6 +62,22 @@ class Devicelocale {
         })
         .toList()
         .cast<Locale>();
+  }
+
+  /// Returns a [String] of the DEFAULT device locale made up of the language and the region
+  /// (e.g. en-US or en_US).
+  static Future<String?> get defaultLocale async {
+    final List? locales = await preferredLanguages;
+    if (locales == null || locales.isEmpty) {
+      return await currentLocale;
+    }
+    return locales[0];
+  }
+
+  /// Returns the DEFAULT [Locale] of the devices made up of the language and the region
+  static Future<Locale?> get defaultAsLocale async {
+    final String? locale = await defaultLocale;
+    return _getAsLocale(locale, null);
   }
 
   /// Returns a [String] of the currently set DEVICE locale made up of the language and the region

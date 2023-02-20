@@ -1,3 +1,7 @@
+## 0.6.0
+
+* 19 Feb 2023 -  update for iOS issue, added defaultLocale call
+
 ## 0.5.5
 
 * 30 Aug 2022 - pr to merge macos support

@@ -28,6 +28,13 @@ Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferr
 
 ## Updates
 
+### Feb 2023
+Added  2 new functions for this [iOS issue](https://github.com/magnatronus/flutter-devicelocale/issues/38)
+
+- defaultLocale
+ - defaultAsLocale
+ 
+
 ### July 2022
 Added support for per-app language preferences on Android (https://developer.android.com/about/versions/13/features/app-languages#kotlin)
 You can now set the per-app language if you have an in app language picker.
