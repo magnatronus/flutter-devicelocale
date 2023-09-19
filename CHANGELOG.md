@@ -1,3 +1,7 @@
+## 0.7.0
+
+* 19 Sep 2023 - metge PR for AGP 8 compatibility
+
 ## 0.6.0
 
 * 19 Feb 2023 -  update for iOS issue, added defaultLocale call

@@ -28,6 +28,9 @@ Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferr
 
 ## Updates
 
+### Sept 2023
+merged pull request for compatibility with AGP 8
+
 ### Feb 2023
 Added  2 new functions for this [iOS issue](https://github.com/magnatronus/flutter-devicelocale/issues/38)
 
