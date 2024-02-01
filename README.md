@@ -1,6 +1,8 @@
 # devicelocale
 
-Gets the device locale data, independent of the app locale settings.
+Gets the device locale data, independent of the app locale settings. 
+
+Please note that there is currently no support for web.
 
 ## Usage
 
@@ -17,7 +19,7 @@ String locale = await Devicelocale.currentLocale;
 
 this should return a list of the preferred/current language locales setup on the device, with the current one being the first in the list or just the currently set device locale.
 
-### Android specific implementation (no-op on other platforms)
+### Android specific implementation (no-op on other platforms if supported)
 Added per-app language preferences for Android (https://developer.android.com/about/versions/13/features/app-languages#kotlin)
 You can check if your current device is supported `isLanguagePerAppSettingSupported`
 And after checking if your device is supported you can set the per-app language preference with `setLanguagePerApp(Locale)` this will return true if success
