@@ -1,3 +1,7 @@
+## 0.7.1
+
+* 11 Mar 2024 - Merge iOS PrivacyInfo PR
+
 ## 0.7.0
 
 * 19 Sep 2023 - metge PR for AGP 8 compatibility
