@@ -1,3 +1,7 @@
+## 0.8.0
+
+* 5 Jul 2024 - Support WASM on web
+
 ## 0.7.1
 
 * 11 Mar 2024 - Merge iOS PrivacyInfo PR

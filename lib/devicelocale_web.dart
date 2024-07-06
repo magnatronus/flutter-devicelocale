@@ -1,12 +1,9 @@
 import 'dart:async';
-// In order to *not* need this ignore, consider extracting the "web" version
-// of your plugin as a separate package, instead of inlining it in the same
-// package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html show window;
+import 'dart:js_interop';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:web/web.dart' as web show window;
 
 /// A web implementation of the Devicelocale plugin.
 class DevicelocaleWeb {
@@ -39,12 +36,12 @@ class DevicelocaleWeb {
   }
 
   Future<List?> getPreferredLanguages() {
-    final List? languages = html.window.navigator.languages;
+    final List? languages = web.window.navigator.languages.toDart.map((e) => e.toDart).toList();
     return Future.value(languages);
   }
 
   Future<String?> getCurrentLocale() {
-    final String? locale = html.window.navigator.language;
+    final String? locale = web.window.navigator.language;
     return Future.value(locale);
   }
 }
