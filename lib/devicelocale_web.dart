@@ -36,7 +36,8 @@ class DevicelocaleWeb {
   }
 
   Future<List?> getPreferredLanguages() {
-    final List? languages = web.window.navigator.languages.toDart.map((e) => e.toDart).toList();
+    final List? languages =
+        web.window.navigator.languages.toDart.map((e) => e.toDart).toList();
     return Future.value(languages);
   }
 

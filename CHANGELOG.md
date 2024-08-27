@@ -1,3 +1,7 @@
+## 0.8.1
+
+* 27 Aug 2024 - Web version bump
+
 ## 0.8.0
 
 * 5 Jul 2024 - Support WASM on web
