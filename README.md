@@ -2,7 +2,6 @@
 
 Gets the device locale data, independent of the app locale settings. 
 
-Please note that there is currently no support for web.
 
 ## Usage
 
