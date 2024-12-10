@@ -49,7 +49,9 @@ static gchar *get_category_locale(int category)
     bool no_locale = locale == nullptr
         || strncmp(locale, "LC_", sizeof("LC_") - 1) == 0;
     if (no_locale) {
-        g_free(locale);
+        if (!locale) {
+            g_free(locale);
+        }
         return nullptr;
     } else {
         return locale;
