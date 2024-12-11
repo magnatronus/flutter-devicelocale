@@ -5,6 +5,7 @@
 
 #include <clocale>
 #include <cstring>
+#include <stdio.h>
 
 #define DEVICELOCALE_PLUGIN(obj)                                       \
     (G_TYPE_CHECK_INSTANCE_CAST((obj), devicelocale_plugin_get_type(), \
@@ -49,9 +50,6 @@ static gchar *get_category_locale(int category)
     bool no_locale = locale == nullptr
         || strncmp(locale, "LC_", sizeof("LC_") - 1) == 0;
     if (no_locale) {
-        if (!locale) {
-            g_free(locale);
-        }
         return nullptr;
     } else {
         return locale;
