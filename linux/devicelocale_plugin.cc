@@ -5,7 +5,6 @@
 
 #include <clocale>
 #include <cstring>
-#include <stdio.h>
 
 #define DEVICELOCALE_PLUGIN(obj)                                       \
     (G_TYPE_CHECK_INSTANCE_CAST((obj), devicelocale_plugin_get_type(), \
