@@ -1,3 +1,7 @@
+## 0.8.2
+
+* 07 Sep 2025 - update android SDK version
+
 ## 0.8.1
 
 * 27 Aug 2024 - Web version bump
