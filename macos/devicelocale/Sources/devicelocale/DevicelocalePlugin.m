@@ -1,4 +1,4 @@
-#import "DevicelocalePlugin.h"
+#import "./include/devicelocale/DevicelocalePlugin.h"
 
 @implementation DevicelocalePlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {

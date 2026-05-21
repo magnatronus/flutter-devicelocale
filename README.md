@@ -27,6 +27,14 @@ And after checking if your device is supported you can set the per-app language 
 
 Since GNU/Linux and POSIX doesn't provide a standard API for getting the preferred languages, `Devicelocale.preferredLanguages` always returns the current locale.
 
+### Swift Package Manager (iOS / macOS)
+
+Both CocoaPods and Swift Package Manager are supported; Flutter ≥ 3.44 uses SwiftPM automatically. To verify SwiftPM locally on Xcode 26+, clone the repository into a directory matching the pubspec name, otherwise the example app build fails with a SwiftPM identity-mismatch error (pub.dev users are unaffected):
+
+```sh
+git clone https://github.com/magnatronus/flutter-devicelocale.git devicelocale
+```
+
 ## Updates
 
 ### Sept 2023

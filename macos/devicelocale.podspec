@@ -13,8 +13,8 @@ A new flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'devicelocale/Sources/devicelocale/**/*.{h,m}'
+  s.public_header_files = 'devicelocale/Sources/devicelocale/include/**/*.h'
   s.dependency 'FlutterMacOS'
   s.platform = :osx, '10.11'
 end

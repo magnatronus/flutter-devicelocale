@@ -10,3 +10,7 @@ example/web
 example/macos
 .idea/
 *.iml
+
+# Swift Package Manager
+.build/
+.swiftpm/
