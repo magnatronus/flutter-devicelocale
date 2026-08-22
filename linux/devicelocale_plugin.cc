@@ -29,13 +29,13 @@ static const int CATEGORIES[CATEGORIES_SIZE] = {
 };
 
 // Remove the encoding from the end of the locale string and returns new string
-static gchar *remove_encoding(gchar *locale)
+static gchar *remove_encoding(const gchar *locale)
 {
     if (locale == nullptr) {
-        return locale;
+        return nullptr;
     }
     gsize n_bytes = 0;
-    for (char *c = locale; c; ++c, n_bytes++) {
+    for (const char *c = locale; *c != '\0'; ++c, n_bytes++) {
         if (*c == '.' || *c == '@') {
             break;
         }
@@ -43,13 +43,12 @@ static gchar *remove_encoding(gchar *locale)
     return g_strndup(locale, n_bytes);
 }
 
-static gchar *get_category_locale(int category)
+static const gchar *get_category_locale(int category)
 {
-    gchar *locale = setlocale(category, "");
+    const gchar *locale = setlocale(category, "");
     bool no_locale = locale == nullptr
         || strncmp(locale, "LC_", sizeof("LC_") - 1) == 0;
     if (no_locale) {
-        g_free(locale);
         return nullptr;
     } else {
         return locale;
