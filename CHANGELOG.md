@@ -1,3 +1,7 @@
+## 0.9.1
+
+* 22 Aug 26 - merged PR for linux update
+
 ## 0.9.0
 
 * 27 May 2026 - merged pull request for swift package manager updatre
